@@ -1,0 +1,284 @@
+// Variables
+$primary-color: #2563eb;
+$secondary-color: #1e40af;
+$text-color: #1f2937;
+$light-text: #6b7280;
+$bg-color: #f9fafb;
+$card-bg: #ffffff;
+$border-radius: 16px;
+$box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+$transition: all 0.3s ease;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin card-style {
+  background: $card-bg;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 2rem;
+}
+
+// Reset & Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: $bg-color;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+// Main Container
+.profile-container {
+  @include flex-center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  .profile-card {
+    @include card-style;
+    max-width: 900px;
+    width: 90%;
+    animation: slideIn 0.6s ease-out;
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #e5e7eb;
+
+      .profile-avatar {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 2rem;
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        border-radius: 50%;
+        @include flex-center;
+        font-size: 4rem;
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        color: $text-color;
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+      }
+
+      .title {
+        color: $light-text;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+
+    .profile-info {
+      .info-section {
+        margin-bottom: 2.5rem;
+
+        h2 {
+          font-size: 1.75rem;
+          color: $primary-color;
+          margin-bottom: 1.5rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+
+          &::before {
+            content: '';
+            width: 5px;
+            height: 28px;
+            background: $primary-color;
+            border-radius: 2px;
+          }
+        }
+
+        .info-item {
+          display: flex;
+          align-items: center;
+          padding: 1.25rem 1.75rem;
+          margin-bottom: 1rem;
+          background: $bg-color;
+          border-radius: 12px;
+          transition: $transition;
+
+          &:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+          }
+
+          .icon {
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            min-width: 32px;
+            text-align: center;
+          }
+
+          .label {
+            font-weight: 600;
+            color: $text-color;
+            min-width: 120px;
+            font-size: 1.15rem;
+          }
+
+          .value {
+            color: $light-text;
+            word-break: break-all;
+            font-size: 1.1rem;
+          }
+
+          a {
+            color: $primary-color;
+            text-decoration: none;
+            transition: $transition;
+
+            &:hover {
+              color: $secondary-color;
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .skills-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 1.5rem;
+          margin-top: 1rem;
+
+          .skill-item {
+            @include flex-center;
+            flex-direction: column;
+            padding: 1.5rem;
+            background: $bg-color;
+            border-radius: 12px;
+            transition: $transition;
+            cursor: pointer;
+
+            &:hover {
+              transform: translateY(-10px) scale(1.05);
+              box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+              background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            }
+
+            img {
+              width: 80px;
+              height: 80px;
+              object-fit: contain;
+              margin-bottom: 1rem;
+              transition: $transition;
+            }
+
+            &:hover img {
+              transform: scale(1.1) rotate(5deg);
+            }
+
+            span {
+              font-weight: 600;
+              color: $text-color;
+              font-size: 1.1rem;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 2px solid #e5e7eb;
+
+      a {
+        @include flex-center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: $primary-color;
+        color: white;
+        font-size: 2rem;
+        text-decoration: none;
+        transition: $transition;
+        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+
+        &:hover {
+          transform: translateY(-8px) scale(1.1);
+          box-shadow: 0 12px 28px rgba(37, 99, 235, 0.5);
+        }
+
+        &.facebook {
+          background: #1877f2;
+        }
+
+        &.github {
+          background: #333;
+        }
+
+        &.email {
+          background: #ea4335;
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+
+    .profile-card {
+      padding: 1.5rem;
+
+      .profile-header {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .profile-avatar {
+          width: 100px;
+          height: 100px;
+          font-size: 2.5rem;
+        }
+      }
+
+      .profile-info {
+        .info-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+
+          .label {
+            min-width: auto;
+          }
+        }
+      }
+    }
+  }
+}
